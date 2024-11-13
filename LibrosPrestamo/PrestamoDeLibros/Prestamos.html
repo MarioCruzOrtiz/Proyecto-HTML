@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Préstamo de Libros</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="resources/img/Biblio.png" alt="Logo" width="40" height="35" class="d-inline-block align-text-top">
+      Biblioteca</a>
+      <!--Buton toggle para menú hamburguesa-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#inicio">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#libros">Libros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#prestamos">Préstamos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#devoluciones">Devoluciones</a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-end">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Sistema de Préstamo de Libros</h1>
+    
+    <!-- Sección de Inicio -->
+    <div id="inicio" class="content-section active">
+      <h2>Bienvenido al Sistema de Préstamo de Libros</h2>
+      <p>Utilice la barra de navegación para gestionar libros, usuarios y préstamos.</p>
+
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="resources/img/978970106578.jpg" alt="imagen PC++" width="300" height="600" class="img-thumbnail">
+            <div class="card-body">
+              <p class="card-text">Estructura de Datos en C++</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="resources/img/1-18-600x800.png" alt="imagen PC++" width="300" height="600" class="img-thumbnail">
+            <div class="card-body">
+              <p class="card-text">Fundamentos de programación en C/C++</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="resources/img/md30967866347.jpg" alt="imagen PC++" width="300" height="600" class="img-thumbnail">
+            <div class="card-body">
+              <p class="card-text">Fundamentos de programación.</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Libros -->
+    <div id="libros" class="content-section">
+      <!-- Formulario para registrar un nuevo libro -->
+      <div class="card mb-4">
+        <div class="card-header">Registrar Nuevo Libro</div>
+        <div class="card-body">
+          <form id="form-registrar-libro" class="row g-3">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="titulo">Título del Libro</label>
+                <input type="text" id="titulo" class="form-control" placeholder="Ingrese el título del libro" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="autor">Autor</label>
+                <input type="text" id="autor" class="form-control" placeholder="Ingrese el nombre del autor" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="copias">Número de Copias</label>
+              <input type="number" id="copias" class="form-control" min="1" placeholder="Ingrese el número de copias disponibles" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Registrar Libro</button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Listado de libros disponibles -->
+      <div class="card">
+        <div class="card-header">Libros Disponibles</div>
+        <div class="card-body">
+          <ul id="lista-libros" class="list-group"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Usuarios -->
+    <div id="usuarios" class="content-section">
+      <div class="card mb-4">
+        <div class="card-header">Registrar Nuevo Usuario</div>
+        <div class="card-body">
+          <form id="form-registrar-usuario" class="row g-3">
+            <div class="form-group">
+              <label for="nombre-usuario">Nombre del Usuario</label>
+              <input type="text" id="nombre-usuario" class="form-control" placeholder="Ingrese el nombre del usuario" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Registrar Usuario</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Préstamos -->
+    <div id="prestamos" class="content-section">
+      <!-- Formulario para realizar un préstamo -->
+      <div class="card mb-4">
+        <div class="card-header">Realizar Préstamo</div>
+        <div class="card-body">
+          <form id="form-prestar-libro">
+            <div class="form-group">
+              <label for="libro-prestamo">Seleccione un Libro</label>
+              <select id="libro-prestamo" class="form-control" required></select>
+            </div>
+            <div class="form-group">
+              <label for="usuario-prestamo">Seleccione un Usuario</label>
+              <select id="usuario-prestamo" class="form-control" required></select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Prestar Libro</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Devoluciones -->
+    <div id="devoluciones" class="content-section">
+      <!-- Formulario para realizar una devolución -->
+      <div class="card mb-4">
+        <div class="card-header">Devolver Libro</div>
+        <div class="card-body">
+          <form id="form-devolver-libro">
+            <div class="form-group">
+              <label for="libro-devolucion">Seleccione un Libro</label>
+              <select id="libro-devolucion" class="form-control" required></select>
+            </div>
+            <div class="form-group">
+              <label for="usuario-devolucion">Seleccione un Usuario</label>
+              <select id="usuario-devolucion" class="form-control" required></select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Devolver Libro</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Biblioteca. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="MiAPP.js"></script>
+</body>
+</html>
